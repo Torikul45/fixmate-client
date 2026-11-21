@@ -1,4 +1,3 @@
-
 "use client";
 
 import { useState } from "react";
@@ -21,9 +20,7 @@ export default function ProfilePage() {
 
   if (isPending) {
     return (
-      <div className="py-20 text-center text-slate-500">
-        Loading profile...
-      </div>
+      <div className="py-20 text-center text-slate-500">Loading profile...</div>
     );
   }
 
@@ -135,17 +132,35 @@ function ProfileForm({
         imageUrl = uploadResult.data.url;
       }
 
-      // Update profile using BetterAuth
-      const { error } = await authClient.updateUser({
-        name: formData.name.trim(),
-        image: imageUrl,
-        phone: formData.phone.trim(),
-        area: formData.area.trim(),
-        bio: formData.bio.trim(),
-      });
+      // Update profile using Server API
+      const { data: tokenData, error: tokenError } = await authClient.token();
 
-      if (error) {
-        throw new Error(error.message || "Failed to update profile.");
+      if (tokenError || !tokenData?.token) {
+        throw new Error("Please login again.");
+      }
+
+      const response = await fetch(
+        `${process.env.NEXT_PUBLIC_API_URL}/users/profile`,
+        {
+          method: "PATCH",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${tokenData.token}`,
+          },
+          body: JSON.stringify({
+            name: formData.name.trim(),
+            image: imageUrl,
+            phone: formData.phone.trim(),
+            area: formData.area.trim(),
+            bio: formData.bio.trim(),
+          }),
+        },
+      );
+
+      const result = await response.json();
+
+      if (!response.ok) {
+        throw new Error(result.message || "Failed to update profile.");
       }
 
       // Refresh session data
@@ -169,9 +184,7 @@ function ProfileForm({
   return (
     <div>
       <div>
-        <h1 className="text-3xl font-bold text-slate-900">
-          Update Profile
-        </h1>
+        <h1 className="text-3xl font-bold text-slate-900">Update Profile</h1>
         <p className="mt-2 text-slate-500">
           Manage your personal information and profile details.
         </p>
