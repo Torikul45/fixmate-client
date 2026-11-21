@@ -1,9 +1,12 @@
+
 import { betterAuth } from "better-auth";
 import { mongodbAdapter } from "@better-auth/mongo-adapter";
 import { jwt } from "better-auth/plugins";
 import { client, db } from "./mongodb";
 
 export const auth = betterAuth({
+  trustedOrigins: ["http://localhost:3000"],
+
   database: mongodbAdapter(db, {
     client,
   }),
