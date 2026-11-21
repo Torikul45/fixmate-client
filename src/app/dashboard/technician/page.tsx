@@ -1,9 +1,9 @@
-
 "use client";
 
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { authClient } from "@/lib/auth-client";
+import { toast } from "sonner";
 
 type Service = {
   _id: string;
@@ -69,6 +69,11 @@ export default function TechnicianDashboard() {
         );
       } catch (error) {
         console.error("Technician Dashboard Error:", error);
+        toast.error(
+          error instanceof Error
+            ? error.message
+            : "Failed to load dashboard data.",
+        );
       } finally {
         setLoading(false);
       }
