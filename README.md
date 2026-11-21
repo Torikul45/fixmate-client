@@ -79,11 +79,12 @@ Configure the backend environment variables in the server project before startin
 
 Add your verified test account credentials here before submission.
 
-| Role | Email | Password |
-|---|---|---|
-| Admin | To be added | To be added |
-| Technician | To be added | To be added |
-| Customer | To be added | To be added |
+| Role         | Email               | Password             |
+|--------------|---------------------|----------------------|
+| Admin        | habibi98@gmail.com  | Provided to examiner |
+| Technician 1 | orbin56@gmail.com   | Provided to examiner |
+| Technician 2 | mubid1234@gmail.com | Provided to examiner |
+| Customer     | nazib23@gmail.com   | Provided to examiner |
 
 ## Live Website
 
