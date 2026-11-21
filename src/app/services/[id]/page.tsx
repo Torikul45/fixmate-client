@@ -1,3 +1,4 @@
+
 "use client";
 
 import Image from "next/image";
@@ -127,9 +128,6 @@ export default function ServiceDetailsPage() {
       }
 
       const user = sessionData?.user as SessionUser | undefined;
-
-      console.log("Booking Session:", sessionData);
-      console.log("Booking User:", user);
 
       if (!user) {
         router.push(
