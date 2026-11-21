@@ -1,36 +1,97 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# FixMate – Smart Device & Home Appliance Repair Service Platform
+
+FixMate is a smart device and home appliance repair service platform that connects customers with professional technicians. Customers can explore repair services, book appointments, track booking status, and securely pay online.
+
+## Key Features
+
+- **User Authentication:** Secure sign-up and sign-in with role-based access for Admin, Technician, and Customer.
+- **Service Management:** Browse available repair services and view service details.
+- **Booking Management:** Customers can book services, view their bookings, and cancel eligible bookings.
+- **Technician Dashboard:** Technicians can manage assigned bookings and accept or reject requests.
+- **Payment Integration:** Secure online payments through Stripe Checkout.
+- **Payment History:** Customers can view their previous payment records.
+- **Role-Based Authorization:** Protected routes and APIs ensure users can access only authorized resources.
+- **Responsive Design:** User-friendly interface for desktop, tablet, and mobile devices.
+
+## Technologies Used
+
+- Next.js
+- React
+- TypeScript
+- Tailwind CSS
+- Better Auth
+- Express.js
+- MongoDB
+- Stripe
+- Sonner
+- Lucide React
 
 ## Getting Started
 
-First, run the development server:
+### Prerequisites
+
+- Node.js
+- npm
+- MongoDB connection
+- Backend server running
+
+### Installation
+
+Clone the repository:
+
+```bash
+git clone YOUR_CLIENT_GITHUB_REPOSITORY_URL
+```
+
+Go to the project directory:
+
+```bash
+cd fixmate-client
+```
+
+Install dependencies:
+
+```bash
+npm install
+```
+
+Create a `.env.local` file in the project root:
+
+```env
+NEXT_PUBLIC_API_URL=YOUR_BACKEND_API_URL
+```
+
+Start the development server:
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000) in your browser.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Backend Setup
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+The backend server must be configured and running for API requests, authentication, booking management, and payments to work.
 
-## Learn More
+Configure the backend environment variables in the server project before starting it.
 
-To learn more about Next.js, take a look at the following resources:
+## Test Credentials
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Add your verified test account credentials here before submission.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+| Role | Email | Password |
+|---|---|---|
+| Admin | To be added | To be added |
+| Technician | To be added | To be added |
+| Customer | To be added | To be added |
 
-## Deploy on Vercel
+## Live Website
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+To be added after production deployment.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Important Notes
+
+- Never commit `.env` or `.env.local` files.
+- Keep API keys and secret credentials private.
+- Stripe test payments require valid Stripe test configuration.
+
