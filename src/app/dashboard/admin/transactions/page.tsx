@@ -14,7 +14,7 @@ type Payment = {
   stripePaymentIntentId?: string;
   amount: number;
   currency: string;
-  status: string;
+  paymentStatus: string;
   createdAt: string;
 };
 
@@ -170,7 +170,7 @@ export default function AdminTransactionsPage() {
                     </td>
                     <td className="px-6 py-4">
                       <span className="rounded-full bg-green-100 px-3 py-1 text-xs font-semibold capitalize text-green-700">
-                        {payment.status}
+                        {payment.paymentStatus}
                       </span>
                     </td>
                   </tr>
