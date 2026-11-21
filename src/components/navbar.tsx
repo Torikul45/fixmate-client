@@ -252,6 +252,7 @@ export default function Navbar() {
           onClick={() => setMobileMenu(!mobileMenu)}
           className="rounded-lg p-2 text-slate-700 hover:bg-slate-100 md:hidden"
           aria-label="Toggle navigation menu"
+          aria-expanded={mobileMenu}
         >
           {mobileMenu ? <X size={25} /> : <Menu size={25} />}
         </button>
