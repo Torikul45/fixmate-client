@@ -40,7 +40,7 @@ FixMate is a smart device and home appliance repair service platform that connec
 Clone the repository:
 
 ```bash
-git clone YOUR_CLIENT_GITHUB_REPOSITORY_URL
+git clone https://github.com/Torikul45/fixmate-client.git
 ```
 
 Go to the project directory:
