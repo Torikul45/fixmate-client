@@ -121,11 +121,13 @@ export default function AdminServicesPage() {
       );
 
       setServices((previous) =>
-        previous.map((service) =>
-          service._id === serviceId
-            ? { ...service, approvalStatus }
-            : service
-        )
+        status === "all"
+          ? previous.map((service) =>
+              service._id === serviceId
+                ? { ...service, approvalStatus }
+                : service
+            )
+          : previous.filter((service) => service._id !== serviceId)
       );
 
       setSelectedService(null);
