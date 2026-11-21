@@ -1,9 +1,9 @@
-
 "use client";
 
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { authClient } from "@/lib/auth-client";
+import { toast } from "sonner";
 
 type Booking = {
   _id: string;
@@ -55,7 +55,11 @@ export default function CustomerDashboard() {
           bookings.filter((booking) => booking.status === "completed").length,
         );
       } catch (error) {
-        console.error("Customer Dashboard Error:", error);
+        toast.error(
+          error instanceof Error
+            ? error.message
+            : "Failed to load customer dashboard.",
+        );
       } finally {
         setLoading(false);
       }
