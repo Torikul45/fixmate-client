@@ -144,7 +144,7 @@ export default function PaymentHistoryPage() {
 
                     <td className="px-4 py-4">
                       <span className="rounded-full bg-green-100 px-3 py-1 text-xs font-semibold text-green-700">
-                        {payment.status}
+                        {payment.paymentStatus}
                       </span>
                     </td>
                   </tr>

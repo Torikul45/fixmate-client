@@ -1,4 +1,3 @@
-
 "use client";
 
 import { useCallback, useEffect, useState } from "react";
@@ -46,7 +45,7 @@ export default function TechnicianRequestsPage() {
   const [loading, setLoading] = useState(true);
   const [busyId, setBusyId] = useState<string | null>(null);
   const [completeBookingId, setCompleteBookingId] = useState<string | null>(
-    null
+    null,
   );
   const [finalAmount, setFinalAmount] = useState("");
 
@@ -54,23 +53,19 @@ export default function TechnicianRequestsPage() {
     try {
       setLoading(true);
 
-      const { data: tokenData, error: tokenError } =
-        await authClient.token();
+      const { data: tokenData, error: tokenError } = await authClient.token();
 
       if (tokenError || !tokenData?.token) {
         toast.error("Please login again.");
         return;
       }
 
-      const response = await fetch(
-        `${API_URL}/bookings/technician-requests`,
-        {
-          headers: {
-            Authorization: `Bearer ${tokenData.token}`,
-          },
-          cache: "no-store",
-        }
-      );
+      const response = await fetch(`${API_URL}/bookings/technician-requests`, {
+        headers: {
+          Authorization: `Bearer ${tokenData.token}`,
+        },
+        cache: "no-store",
+      });
 
       const data = await response.json();
 
@@ -84,7 +79,7 @@ export default function TechnicianRequestsPage() {
       toast.error(
         error instanceof Error
           ? error.message
-          : "Something went wrong while loading requests."
+          : "Something went wrong while loading requests.",
       );
     } finally {
       setLoading(false);
@@ -102,33 +97,29 @@ export default function TechnicianRequestsPage() {
   const updateBookingStatus = async (
     bookingId: string,
     status: string,
-    amount?: number
+    amount?: number,
   ) => {
     try {
       setBusyId(bookingId);
 
-      const { data: tokenData, error: tokenError } =
-        await authClient.token();
+      const { data: tokenData, error: tokenError } = await authClient.token();
 
       if (tokenError || !tokenData?.token) {
         toast.error("Please login again.");
         return;
       }
 
-      const response = await fetch(
-        `${API_URL}/bookings/${bookingId}/status`,
-        {
-          method: "PATCH",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${tokenData.token}`,
-          },
-          body: JSON.stringify({
-            status,
-            ...(amount !== undefined ? { finalAmount: amount } : {}),
-          }),
-        }
-      );
+      const response = await fetch(`${API_URL}/bookings/${bookingId}/status`, {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${tokenData.token}`,
+        },
+        body: JSON.stringify({
+          status,
+          ...(amount !== undefined ? { finalAmount: amount } : {}),
+        }),
+      });
 
       const data = await response.json();
 
@@ -145,9 +136,7 @@ export default function TechnicianRequestsPage() {
     } catch (error) {
       console.error("Update Booking Error:", error);
       toast.error(
-        error instanceof Error
-          ? error.message
-          : "Failed to update booking."
+        error instanceof Error ? error.message : "Failed to update booking.",
       );
     } finally {
       setBusyId(null);
@@ -184,15 +173,15 @@ export default function TechnicianRequestsPage() {
   };
 
   const pendingCount = bookings.filter(
-    (booking) => booking.status === "requested"
+    (booking) => booking.status === "requested",
   ).length;
 
   const activeCount = bookings.filter((booking) =>
-    ["accepted", "in-progress"].includes(booking.status)
+    ["accepted", "in-progress"].includes(booking.status),
   ).length;
 
   const completedCount = bookings.filter(
-    (booking) => booking.status === "completed"
+    (booking) => booking.status === "completed",
   ).length;
 
   return (
@@ -217,10 +206,7 @@ export default function TechnicianRequestsPage() {
             disabled={loading}
             className="inline-flex items-center justify-center gap-2 rounded-xl border border-gray-200 bg-white px-5 py-3 text-sm font-semibold text-gray-700 shadow-sm transition hover:bg-gray-50 disabled:opacity-50"
           >
-            <RefreshCw
-              size={17}
-              className={loading ? "animate-spin" : ""}
-            />
+            <RefreshCw size={17} className={loading ? "animate-spin" : ""} />
             Refresh
           </button>
         </div>
@@ -296,10 +282,7 @@ export default function TechnicianRequestsPage() {
             </div>
           ) : bookings.length === 0 ? (
             <div className="rounded-2xl border border-dashed border-gray-200 py-16 text-center">
-              <ClipboardList
-                size={45}
-                className="mx-auto text-gray-300"
-              />
+              <ClipboardList size={45} className="mx-auto text-gray-300" />
               <h3 className="mt-4 text-lg font-semibold text-gray-800">
                 No Booking Requests Yet
               </h3>
@@ -322,7 +305,7 @@ export default function TechnicianRequestsPage() {
                         </h3>
                         <span
                           className={`rounded-full px-3 py-1 text-xs font-semibold capitalize ${getStatusStyle(
-                            booking.status
+                            booking.status,
                           )}`}
                         >
                           {booking.status.replace("-", " ")}
@@ -367,18 +350,13 @@ export default function TechnicianRequestsPage() {
                     </div>
 
                     <div className="flex items-start gap-3">
-                      <CalendarDays
-                        size={18}
-                        className="mt-1 text-teal-700"
-                      />
+                      <CalendarDays size={18} className="mt-1 text-teal-700" />
                       <div>
-                        <p className="text-xs text-gray-500">
-                          Preferred Date
-                        </p>
+                        <p className="text-xs text-gray-500">Preferred Date</p>
                         <p className="font-medium text-gray-800">
                           {booking.preferredDate
                             ? new Date(
-                                `${booking.preferredDate}T00:00:00`
+                                `${booking.preferredDate}T00:00:00`,
                               ).toLocaleDateString()
                             : "Not specified"}
                         </p>
@@ -461,9 +439,7 @@ export default function TechnicianRequestsPage() {
                       <button
                         onClick={() => {
                           setCompleteBookingId(booking._id);
-                          setFinalAmount(
-                            String(booking.basePrice || "")
-                          );
+                          setFinalAmount(String(booking.basePrice || ""));
                         }}
                         className="inline-flex items-center gap-2 rounded-xl bg-emerald-600 px-5 py-3 text-sm font-semibold text-white transition hover:bg-emerald-700"
                       >
@@ -487,7 +463,9 @@ export default function TechnicianRequestsPage() {
                     {booking.status === "completed" && (
                       <p className="text-sm font-medium text-emerald-700">
                         <CheckCircle size={16} className="mr-1 inline" />
-                        Job completed. Waiting for customer payment.
+                        {booking.paymentStatus === "paid"
+                          ? "Job completed. Payment received."
+                          : "Job completed. Waiting for customer payment."}
                       </p>
                     )}
                   </div>
@@ -519,9 +497,7 @@ export default function TechnicianRequestsPage() {
                         </div>
 
                         <button
-                          onClick={() =>
-                            handleCompleteJob(booking._id)
-                          }
+                          onClick={() => handleCompleteJob(booking._id)}
                           disabled={busyId === booking._id}
                           className="rounded-xl bg-emerald-600 px-5 py-3 text-sm font-semibold text-white transition hover:bg-emerald-700 disabled:opacity-50"
                         >
