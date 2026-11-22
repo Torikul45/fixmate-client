@@ -51,34 +51,58 @@ export default function Footer() {
             <ul className="space-y-3 text-sm text-slate-400">
               <li>
                 <Link
-                  href="/services"
+                  href="/services?category=Smartphone"
                   className="transition hover:text-teal-400"
                 >
-                  Smartphone & Laptop Repair
+                  Smartphone
                 </Link>
               </li>
               <li>
                 <Link
-                  href="/services"
+                  href="/services?category=Laptop%20%26%20PC"
                   className="transition hover:text-teal-400"
                 >
-                  Home Appliance Repair
+                  Laptop & PC
                 </Link>
               </li>
               <li>
                 <Link
-                  href="/services"
+                  href="/services?category=AC"
                   className="transition hover:text-teal-400"
                 >
-                  Electrical Services
+                  AC
                 </Link>
               </li>
               <li>
                 <Link
-                  href="/services"
+                  href="/services?category=Refrigerator"
                   className="transition hover:text-teal-400"
                 >
-                  Plumbing Services
+                  Refrigerator
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/services?category=TV"
+                  className="transition hover:text-teal-400"
+                >
+                  TV
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/services?category=Washing%20Machine"
+                  className="transition hover:text-teal-400"
+                >
+                  Washing Machine
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/services?category=Electrical"
+                  className="transition hover:text-teal-400"
+                >
+                  Electrical
                 </Link>
               </li>
             </ul>

@@ -1,4 +1,3 @@
-
 "use client";
 
 import Link from "next/link";
@@ -87,7 +86,6 @@ export default function Navbar() {
   return (
     <header className="sticky top-0 z-50 border-b border-slate-200 bg-white/95 shadow-sm backdrop-blur-md">
       <nav className="mx-auto flex h-18.25 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
-
         {/* Logo */}
         <Link
           href="/"
@@ -97,20 +95,19 @@ export default function Navbar() {
           <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-teal-700 text-white">
             <Wrench size={22} />
           </span>
-
           FixMate<span className="text-slate-900">.</span>
         </Link>
 
         {/* Desktop Navigation */}
-        <div className="hidden items-center gap-8 md:flex">
+        <div className="hidden items-center gap-3 md:flex">
           {navLinks.map((link) => (
             <Link
               key={link.href}
               href={link.href}
-              className={`relative py-2 text-sm font-semibold transition ${
+              className={`rounded-full px-5 py-2.5 text-sm font-semibold transition-all duration-200 ${
                 isActive(link.href)
-                  ? "text-teal-700 after:absolute after:bottom-0 after:left-0 after:h-1 after:w-full after:rounded-full after:bg-orange-500"
-                  : "text-slate-600 hover:text-teal-700"
+                  ? "bg-teal-700 text-white shadow-sm"
+                  : "text-slate-600 hover:bg-teal-50 hover:text-teal-700"
               }`}
             >
               {link.name}
@@ -158,7 +155,6 @@ export default function Navbar() {
               {/* Profile Dropdown */}
               {profileMenu && (
                 <div className="absolute right-0 top-14 z-50 w-72 overflow-hidden rounded-xl border border-slate-200 bg-white shadow-xl">
-
                   {/* User Information */}
                   <div className="border-b border-slate-100 p-4">
                     <div className="flex items-center gap-3">
@@ -262,7 +258,6 @@ export default function Navbar() {
       {mobileMenu && (
         <div className="border-t border-slate-200 bg-white px-4 py-5 shadow-lg md:hidden">
           <div className="flex flex-col gap-2">
-
             {navLinks.map((link) => (
               <Link
                 key={link.href}
@@ -281,9 +276,7 @@ export default function Navbar() {
             <div className="my-2 border-t border-slate-200" />
 
             {isPending ? (
-              <p className="px-4 py-3 text-sm text-slate-500">
-                Loading...
-              </p>
+              <p className="px-4 py-3 text-sm text-slate-500">Loading...</p>
             ) : user ? (
               <>
                 {/* Mobile User Information */}
