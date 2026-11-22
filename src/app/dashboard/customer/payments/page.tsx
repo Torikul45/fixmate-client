@@ -1,4 +1,3 @@
-
 "use client";
 
 import { useEffect, useState } from "react";
@@ -13,11 +12,11 @@ type Payment = {
   stripePaymentIntentId?: string;
   amount: number;
   currency: string;
-  status: string;
+  paymentStatus: string;
   createdAt: string;
   booking?: {
-    serviceTitle?: string;
-    category?: string;
+  serviceTitle?: string;
+  category?: string;
   };
 };
 
@@ -30,29 +29,23 @@ export default function PaymentHistoryPage() {
 
     const fetchPayments = async () => {
       try {
-        const { data: tokenData, error: tokenError } =
-          await authClient.token();
+        const { data: tokenData, error: tokenError } = await authClient.token();
 
         if (tokenError || !tokenData?.token) {
           throw new Error("Please login to view payment history.");
         }
 
-        const response = await fetch(
-          `${API_URL}/payments/my-payments`,
-          {
-            headers: {
-              Authorization: `Bearer ${tokenData.token}`,
-            },
-            cache: "no-store",
-          }
-        );
+        const response = await fetch(`${API_URL}/payments/my-payments`, {
+          headers: {
+            Authorization: `Bearer ${tokenData.token}`,
+          },
+          cache: "no-store",
+        });
 
         const result = await response.json();
 
         if (!response.ok) {
-          throw new Error(
-            result.message || "Failed to load payment history."
-          );
+          throw new Error(result.message || "Failed to load payment history.");
         }
 
         if (!ignore) {
@@ -61,9 +54,7 @@ export default function PaymentHistoryPage() {
       } catch (error) {
         if (!ignore) {
           toast.error(
-            error instanceof Error
-              ? error.message
-              : "Something went wrong."
+            error instanceof Error ? error.message : "Something went wrong.",
           );
         }
       } finally {
@@ -80,9 +71,7 @@ export default function PaymentHistoryPage() {
 
   return (
     <div>
-      <h1 className="text-3xl font-bold text-slate-900">
-        Payment History
-      </h1>
+      <h1 className="text-3xl font-bold text-slate-900">Payment History</h1>
 
       <p className="mt-2 text-slate-500">
         View all your repair service payments.
@@ -144,7 +133,7 @@ export default function PaymentHistoryPage() {
 
                     <td className="px-4 py-4">
                       <span className="rounded-full bg-green-100 px-3 py-1 text-xs font-semibold text-green-700">
-                        {payment.status}
+                        {payment.paymentStatus}
                       </span>
                     </td>
                   </tr>
