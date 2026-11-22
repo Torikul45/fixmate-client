@@ -6,9 +6,9 @@ import { client, db } from "./mongodb";
 
 export const auth = betterAuth({
   trustedOrigins: [
-  "http://localhost:3000",
-  "https://fixmate-client-dusky.vercel.app",
-],
+    "http://localhost:3000",
+    "https://fixmate-client-dusky.vercel.app",
+  ],
 
   database: mongodbAdapter(db, {
     client,
@@ -19,6 +19,13 @@ export const auth = betterAuth({
 
   emailAndPassword: {
     enabled: true,
+  },
+
+  socialProviders: {
+    google: {
+      clientId: process.env.GOOGLE_CLIENT_ID!,
+      clientSecret: process.env.GOOGLE_CLIENT_SECRET!,
+    },
   },
 
   user: {
